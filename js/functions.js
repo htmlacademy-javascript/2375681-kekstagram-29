@@ -1,6 +1,6 @@
 // Первое задание
 
-function checkStringLength(string,maxLength) {
+const checkStringLength = (string,maxLength) {
     return string.length <= maxLength ? true : false;
 }
 checkStringLength('Программа', 9);
@@ -30,4 +30,4 @@ return true;
 
 }
 
-isPalindrome('Лёша на полке клопа нашёл ');
+isPalindrome('топот');
