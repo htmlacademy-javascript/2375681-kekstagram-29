@@ -1,6 +1,6 @@
 // Первое задание
 
-const checkStringLength = (string,maxLength) {
+ function checkStringLength  (string,maxLength) {
     return string.length <= maxLength ? true : false;
 }
 checkStringLength('Программа', 9);
@@ -14,9 +14,9 @@ checkStringLength('Программа', 11);
 
 // Второе задание
 
-function isPalindrome = (string) => string.toUpperCase() === string.toUpperCase().split('').reverse().join('');
+const isPalindrome = (string) => string.toUpperCase() === string.toUpperCase().split('').reverse().join('');
 
-isPalindrome('Лёша на полке клопа нашёл ');
+isPalindrome('топот');
 
 
 function isPalindrome(string) {
