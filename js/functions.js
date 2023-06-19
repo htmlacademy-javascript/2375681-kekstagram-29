@@ -7,10 +7,10 @@ checkStringLength('Программа', 9);
 checkStringLength('Программа', 11);
 
 
-const checkStringLength = (string,maxLength) => string.length <= maxLength;
+const checkStrLength = (string,maxLength) => string.length <= maxLength;
 
-checkStringLength('Программа', 9);
-checkStringLength('Программа', 11);
+checkStrLength('Программа', 9);
+checkStrLength('Программа', 11);
 
 // Второе задание
 
