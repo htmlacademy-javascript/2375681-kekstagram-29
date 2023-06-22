@@ -1,6 +1,5 @@
-import './util';
-function {checkStringLength} from './functions.js';
-
+import {getRandomInteger} from './util';
+import {generateComments, addPhotos, addPhoto} from './data';
 
 
 

@@ -12,9 +12,4 @@ const checkStrLength = (string,maxLength) => string.length <= maxLength;
 checkStrLength('Программа', 9);
 checkStrLength('Программа', 11);
 
-// Второе задание
 
-
-
-
-export {checkStringLength, checkStrLength};
