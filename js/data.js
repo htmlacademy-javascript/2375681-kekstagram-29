@@ -1,3 +1,6 @@
+
+
+
 const PHOTO_COUNT = 25;
 // eslint-disable-next-line no-unused-vars
 const Likes = {
