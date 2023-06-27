@@ -2,13 +2,13 @@ import {getRandomInteger} from './util';
 
 
 const PHOTO_COUNT = 25;
-// eslint-disable-next-line no-unused-vars
+
 const Likes = {
   MIN: 15,
   MAX: 200
 };
 
-// eslint-disable-next-line no-unused-vars
+
 const description = ['Закат на берегу моря',
   'Романтический ужин на балконе с видом на горы',
   'Уютный вечер в семейном кругу',
@@ -16,7 +16,7 @@ const description = ['Закат на берегу моря',
   'Красота в глазах смотрящего',
 ];
 
-// eslint-disable-next-line no-unused-vars
+
 
 
 
@@ -40,7 +40,7 @@ function generateComments() {
       message: commentList[getRandomInteger(0,commentList.length - 1)],
     });
   }
-  
+
 
 
 const photos = [];
@@ -62,4 +62,4 @@ const addPhotos = () => {
 
 addPhotos();
 
-export {generateComments, addPhotos, addPhoto, photos};
+export {generateComments, addPhotos, addPhoto, photos};  
