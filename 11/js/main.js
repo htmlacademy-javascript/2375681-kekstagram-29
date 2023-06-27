@@ -1,4 +1,4 @@
-import {generateComments, addPhotos, addPhoto} from './data';
+import {addPhotos, addPhoto} from './data';
 
 
 const isPalindrome = (string) => string.toUpperCase() === string.toUpperCase().split('').reverse().join('');
