@@ -1,4 +1,3 @@
-import {getRandomInteger} from './util';
 import {generateComments, addPhotos, addPhoto} from './data';
 
 
@@ -25,4 +24,3 @@ function findPalindrome(string) {
 findPalindrome('Лёша на полке клопа нашёл ');
 
 
-// export {findPalindrome};

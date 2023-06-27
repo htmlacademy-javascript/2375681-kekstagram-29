@@ -1,4 +1,4 @@
-
+import {getRandomInteger} from './util';
 
 
 const PHOTO_COUNT = 25;
@@ -17,7 +17,7 @@ const description = ['Закат на берегу моря',
 ];
 
 // eslint-disable-next-line no-unused-vars
-const photos = [];
+
 
 
 function generateComments() {
@@ -40,9 +40,10 @@ function generateComments() {
       message: commentList[getRandomInteger(0,commentList.length - 1)],
     });
   }
-  return comments;
-}
+  
 
+
+const photos = [];
 
 const addPhoto = (id) => ({
   id: id,
@@ -61,4 +62,4 @@ const addPhotos = () => {
 
 addPhotos();
 
-export {generateComments, addPhotos, addPhoto};
+export {generateComments, addPhotos, addPhoto, photos};
