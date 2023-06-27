@@ -1,3 +1,4 @@
+
 import {addPhotos, addPhoto} from './data';
 
 
