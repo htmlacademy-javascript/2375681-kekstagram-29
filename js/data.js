@@ -62,4 +62,4 @@ const addPhotos = () => {
 
 addPhotos();
 
-export {generateComments, addPhotos, addPhoto, photos};  
+export {generateComments, addPhotos, addPhoto, photos};
