@@ -1,3 +1,4 @@
+import {photos} from './data';
 
 const picturesContainer = document.querySelector('.pictures');
 const templateFragment = document.querySelector('#picture').content;
