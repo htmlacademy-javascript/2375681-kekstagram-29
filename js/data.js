@@ -1,4 +1,4 @@
-import {getRandomInteger} from './util';
+import {getRandomInteger} from './util.js';
 
 
 const PHOTO_COUNT = 25;
@@ -62,4 +62,4 @@ const addPhotos = () => {
 
 addPhotos();
 
-export {generateComments, addPhotos, addPhoto, photos};
+export {generateComments, addPhotos, photos};
