@@ -1,9 +1,9 @@
-import {getRandomInteger} from './util';
+import {getRandomInteger} from './util.js';
 
 
 const PHOTO_COUNT = 25;
 
-const Likes = {
+const LIKES = {
   MIN: 15,
   MAX: 200
 };
@@ -16,23 +16,20 @@ const description = ['Закат на берегу моря',
   'Красота в глазах смотрящего',
 ];
 
-
-
+const nameList = ['Александр', 'Дарина', 'Илья', 'Марина', 'Андрей', 'Светлана', 'Константин', 'Вера'];
+const commentList = [
+  'Всё отлично!',
+  'В целом всё неплохо. Но не всё.',
+  'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
+  'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.',
+  'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
+  'Лица у людей на фотке перекошены, как будто их избивают. Лица у людей на фотке перекошены, как будто их избивают.'
+];
 
 
 function generateComments() {
-  const nameList = ['Александр', 'Дарина', 'Илья', 'Марина', 'Андрей', 'Светлана', 'Константин', 'Вера'];
-  const commentList = [
-    'Всё отлично!',
-    'В целом всё неплохо. Но не всё.',
-    'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
-    'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.',
-    'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
-    'Лица у людей на фотке перекошены, как будто их избивают. Лица у людей на фотке перекошены, как будто их избивают.'
-  ];
   const comments = [];
-  const numberOfComments = getRandomInteger(0, 30);
-  for (let i = 1; i <= numberOfComments; i++) {
+  for (let i = 0; i <= getRandomInteger(0, 30); i++) {
     comments.push({
       id: i,
       avatar: `img/avatar-${getRandomInteger(1, 6)}.svg`,
@@ -40,7 +37,8 @@ function generateComments() {
       message: commentList[getRandomInteger(0,commentList.length - 1)],
     });
   }
-
+  return comments;
+}
 
 
 const photos = [];
@@ -49,7 +47,7 @@ const addPhoto = (id) => ({
   id: id,
   url: `photos/${id}.jpg`,
   description: description[getRandomInteger(0, description.length - 1)],
-  likes: getRandomInteger(Likes.MIN, Likes.MAX),
+  likes: getRandomInteger(LIKES.MIN, LIKES.MAX),
   comments: generateComments(),
 });
 
@@ -62,4 +60,4 @@ const addPhotos = () => {
 
 addPhotos();
 
-export {generateComments, addPhotos, addPhoto, photos};
+export {generateComments, photos};
