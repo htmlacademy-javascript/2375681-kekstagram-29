@@ -26,10 +26,9 @@ const commentList = [
   'Лица у людей на фотке перекошены, как будто их избивают. Лица у людей на фотке перекошены, как будто их избивают.'
 ];
 
-const comments = [];
+
 function generateComments() {
-
-
+  const comments = [];
   for (let i = 0; i <= getRandomInteger(0, 30); i++) {
     comments.push({
       id: i,
@@ -38,6 +37,7 @@ function generateComments() {
       message: commentList[getRandomInteger(0,commentList.length - 1)],
     });
   }
+  return comments;
 }
 
 
