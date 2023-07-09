@@ -1,4 +1,3 @@
-import { generateComments } from './data.js';
 
 const COMMENTS_STEP = 5;
 
@@ -8,7 +7,7 @@ const likesCount = bigPhoto.querySelector('.likes-count');
 const photoCaption = bigPhoto.querySelector('.social__caption');
 const bigPhotoCloseButton = bigPhoto.querySelector('.big-picture__cancel');
 const socialComments = bigPhoto.querySelector('.social__comments');
-const socialCommentsCount = bigPhoto.querySelector('.social__comment-count');
+// const socialCommentsCount = bigPhoto.querySelector('.social__comment-count');
 const loadComments = bigPhoto.querySelector('.comments-loader');
 const socialFooterText = bigPhoto.querySelector('.social__footer-text');
 
