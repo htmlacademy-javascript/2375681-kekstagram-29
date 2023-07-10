@@ -25,7 +25,7 @@ const error = errorAlert;
 const showLengthWarning = (evt) => {
   const normalizedText = normalizeString(descriptionInputElement.value);
   if (normalizedText.length === MAX_DESCRIPTION_LENGTH) {
-    const warningElement = createDomElement('p', 'warning__message', ErrorMessage.LIMIT_LENGTH);
+    const warningElement = document.createElement('p', 'warning__message', ErrorMessage.LIMIT_LENGTH);
     const parent = evt.target.parentNode;
     parent.appendChild(warningElement);
   }
