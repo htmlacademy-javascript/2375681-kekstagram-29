@@ -104,9 +104,4 @@ const onHashtagInput = () => {
 descriptionInputElement.addEventListener('input', showLengthWarning);
 hashtagInputElement.addEventListener('input', onHashtagInput);
 
-// const onFormSubmit = (evt) => {
-//   evt.preventDefault();
-//   closeUploadPopup();
-// };
 
-// export {onFormSubmit};
