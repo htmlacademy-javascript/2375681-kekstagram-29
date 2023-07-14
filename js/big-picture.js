@@ -58,7 +58,7 @@ const onLoadCommentsButtonClick = () => {
 };
 
 const showBigPhoto = (photo) => {
-  const {url, likes,comments, description} = photo;
+  const {url, likes, comments, description} = photo;
   bigPhoto.classList.remove ('hidden');
   document.body.classList.add ('modal-open');
 

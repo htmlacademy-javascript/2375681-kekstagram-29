@@ -15,7 +15,7 @@ const ErrorMessage = {
 };
 
 const formElement = document.querySelector('.img-upload__form');
-const hashtagInputElement = formElement.querySelector('.text__hashtag');
+const hashtagInputElement = formElement.querySelector('.text__hashtags');
 const descriptionInputElement = formElement.querySelector('.text__description');
 const submitBtnElement = formElement.querySelector('.img-upload__submit');
 
