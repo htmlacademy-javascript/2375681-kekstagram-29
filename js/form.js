@@ -14,10 +14,67 @@ const ErrorMessage = {
   LIMIT_DESCRIPTION_LENGTH: `вы ввели максимально допустимое количество символов - ${MAX_DESCRIPTION_LENGTH},`
 };
 
-const formElement = document.querySelector('.img-upload__form');
+const formElement = document.querySelector('.img-upload__form');  //Форма загрузки нового изображения
 const hashtagInputElement = formElement.querySelector('.text__hashtags');
 const descriptionInputElement = formElement.querySelector('.text__description');
 const submitBtnElement = formElement.querySelector('.img-upload__submit');
+
+
+const imageUploadForm = document.querySelector('.img-upload__input');  // Форма редактирования изображения
+const formEditor = document.querySelector('.img-upload__overlay');  // Кнопка закрытия формы
+const uploadCancelButton = document.querySelector('.img-upload__cancel');  // Список всех фильтров
+
+const isEscapeKey = (evt) => evt.key === 'Escape';
+
+const pristine = new Pristine (formElement, {
+  classTo: 'field-validate',
+  errorClass: 'field-validate--invalid',
+  successClass: 'field-validate--valid',
+  errorTextParent: 'field-validate',
+  errorTextTag: 'p',
+  errorTextClass: 'form__error',
+});
+
+// <Открытие формы>
+const openForm = () => {
+  formEditor.classList.remove('hidden');
+  document.body.classList.add('modal-open');
+
+  uploadCancelButton.addEventListener('click', onCloseButtonClick);
+  window.addEventListener('keydown', onDocumentKeydown);
+};
+
+
+imageUploadForm.addEventListener('change', () => {
+  openForm();
+});
+
+// <Закрытие формы>
+const closeForm = () => {
+  formEditor.classList.add('hidden');
+  document.body.classList.remove('modal-open');
+  uploadCancelButton.removeEventListener('click', onCloseButtonClick);
+  window.removeEventListener('keydown', onDocumentKeydown);
+
+  imageUploadForm.reset();
+  pristine.reset();
+};
+
+
+function onCloseButtonClick () {
+  closeForm ();
+}
+
+
+function onDocumentKeydown (evt) {
+  if (isEscapeKey(evt)) {
+    evt.preventDefault();
+    closeForm();
+  }
+}
+
+
+/* <_______________________________________________________></_______________________________________________________> */
 
 let errorAlert = '';
 const error = errorAlert;
@@ -82,14 +139,6 @@ const hashtagValidator = (inputValue) => {
   });
 };
 
-const pristine = new Pristine (formElement, {
-  classTo: 'field-validate',
-  errorClass: 'field-validate--invalid',
-  successClass: 'field-validate--valid',
-  errorTextParent: 'field-validate',
-  errorTextTag: 'p',
-  errorTextClass: 'form__error',
-});
 
 pristine.addValidator(hashtagInputElement, hashtagValidator, error, 2, false);
 

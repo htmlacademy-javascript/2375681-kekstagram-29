@@ -84,7 +84,7 @@ const showBigPhoto = (photo) => {
 
 
   function onBigPhotoEscKeyDown (evt) {
-    if(evt.keyCode === 27){
+    if(evt.key === 'Escape'){
       closeBigPhoto();
     }
   }
