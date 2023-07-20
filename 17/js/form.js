@@ -20,9 +20,9 @@ const descriptionInputElement = formElement.querySelector('.text__description');
 const submitBtnElement = formElement.querySelector('.img-upload__submit');
 
 
-const imageUploadForm = document.querySelector('.img-upload__input');  // Форма редактирования изображения
-const formEditor = document.querySelector('.img-upload__overlay');  // Кнопка закрытия формы
-const uploadCancelButton = document.querySelector('.img-upload__cancel');  // Список всех фильтров
+const imageUploadForm = document.querySelector('.img-upload__input');  // Поле для загрузки фотографий
+const formEditor = document.querySelector('.img-upload__overlay');  // Форма редактирования изображения
+const uploadCancelButton = document.querySelector('.img-upload__cancel');  // Кнопка закрытия формы
 
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
