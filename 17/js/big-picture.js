@@ -58,7 +58,7 @@ const onLoadCommentsButtonClick = () => {
 };
 
 const showBigPhoto = (photo) => {
-  const {url, likes,comments, description} = photo;
+  const {url, likes, comments, description} = photo;
   bigPhoto.classList.remove ('hidden');
   document.body.classList.add ('modal-open');
 
@@ -84,7 +84,7 @@ const showBigPhoto = (photo) => {
 
 
   function onBigPhotoEscKeyDown (evt) {
-    if(evt.keyCode === 27){
+    if(evt.key === 'Escape'){
       closeBigPhoto();
     }
   }

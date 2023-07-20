@@ -9,4 +9,5 @@ const normalizeString = (str) => str.toLowerCase().trim();
 
 // export {onFormSubmit};
 
+
 export {getRandomInteger, normalizeString};
