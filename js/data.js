@@ -10,7 +10,8 @@ const LIKES = {
 };
 
 
-const description = ['Закат на берегу моря',
+const description = [
+  'Закат на берегу моря',
   'Романтический ужин на балконе с видом на горы',
   'Уютный вечер в семейном кругу',
   'Улочки старого города',
@@ -66,7 +67,7 @@ const addPhoto = (id) => ({
 
 
 const addPhotos = () => {
-  for (let i = 1; i <= MAX_PHOTO_COUNT; i ++) {
+  for (let i = 1; i <= MAX_PHOTO_COUNT; i++) {
     photos.push(addPhoto(i));
   }
 };
