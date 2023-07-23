@@ -66,7 +66,7 @@ const closeForm = () => {
 
 
 function onCloseButtonClick () { // Функция для закрытия формы крестиком
-  closeForm ();
+  closeForm();
 }
 
 
