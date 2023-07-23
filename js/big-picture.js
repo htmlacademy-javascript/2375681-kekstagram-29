@@ -10,8 +10,11 @@ const socialComments = bigPhoto.querySelector('.social__comments');
 const loadComments = bigPhoto.querySelector('.comments-loader');
 const socialFooterText = bigPhoto.querySelector('.social__footer-text');
 
+<<<<<<< HEAD
 const commentItem = socialComments.querySelector('.social__comment');
 
+=======
+>>>>>>> b42e55768989681bb54dbafade740fc98b8b926f
 let commentsCount = COMMENTS_STEP;
 let currentComments = [];
 
@@ -30,6 +33,7 @@ const renderComments = () => {
 
   socialComments.textContent = `${commentsCount} из ${currentComments.length} комментариев`;
 
+<<<<<<< HEAD
 
   const commentsFragment = document.createDocumentFragment();
 
@@ -38,6 +42,27 @@ const renderComments = () => {
     newComment.querySelector('.social__picture').src = comment.avatar;
     newComment.querySelector('.social__picture').alt = comment.name;
     newComment.querySelector('.social__text').textContent = comment.message;
+=======
+  const commentsFragment = document.createDocumentFragment();
+
+  // const comment = document.querySelector('.social__comment');
+
+  commentsSelected.forEach((comment) => {
+    const newComment = document.createElement('li');
+    const imgComment = document.createElement('img');
+    const textComment = document.createElement('p');
+
+    newComment.classList.add('.social__comment');
+    imgComment.classList.add('.social__picture');
+    textComment.classList.add('.sotial__text');
+
+    imgComment.src = comment.avatar;
+    imgComment.alt = comment.name;
+    textComment.textContent = comment.message;
+
+    newComment.appendChild(imgComment);
+    newComment.appendChild(textComment);
+>>>>>>> b42e55768989681bb54dbafade740fc98b8b926f
 
     commentsFragment.appendChild(newComment);
   });

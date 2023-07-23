@@ -1,4 +1,4 @@
-import {normalizeString} from '../util.js';
+import {normalizeString} from './util.js';
 
 const MAX_DESCRIPTION_LENGTH = 140;
 const MAX_HASHTAG_QTY = 5;
