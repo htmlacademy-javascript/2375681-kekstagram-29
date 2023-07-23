@@ -9,12 +9,9 @@ const bigPhotoCloseButton = bigPhoto.querySelector('.big-picture__cancel');
 const socialComments = bigPhoto.querySelector('.social__comments');
 const loadComments = bigPhoto.querySelector('.comments-loader');
 const socialFooterText = bigPhoto.querySelector('.social__footer-text');
-
-<<<<<<< HEAD
 const commentItem = socialComments.querySelector('.social__comment');
 
-=======
->>>>>>> b42e55768989681bb54dbafade740fc98b8b926f
+
 let commentsCount = COMMENTS_STEP;
 let currentComments = [];
 
@@ -34,7 +31,6 @@ const renderComments = () => {
   socialComments.textContent = `${commentsCount} из ${currentComments.length} комментариев`;
 
 
-
   const commentsFragment = document.createDocumentFragment();
 
   commentsSelected.forEach((comment) => {
@@ -42,8 +38,6 @@ const renderComments = () => {
     newComment.querySelector('.social__picture').src = comment.avatar;
     newComment.querySelector('.social__picture').alt = comment.name;
     newComment.querySelector('.social__text').textContent = comment.message;
-
-
 
     commentsFragment.appendChild(newComment);
   });
