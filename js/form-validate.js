@@ -8,6 +8,9 @@ const ErrorMessage = { // Константы для описания ошибк�
   INVALID_VALUE: 'хеш-тег содержит недопустимые символы',
   INVALID_QUANTITY: `нельзя указать больше ${MAX_HASHTAG_QTY} хеш-тегов`,
   INVALID_REPEAT: 'хеш-теги не должны повторяться',
+  INVALID_HASHTAG_LENGTH: `максимальная длина одного хеш-тега ${MAX_HASHTAG_LENGTH} символов, включая решётку`,
+  INVALID_SEPARATOR: 'хеш-теги разделяются пробелами',
+  INVALID_FIRST_SIMBOL: 'хеш-тег начинается с символа #',
   LIMIT_DESCRIPTION_LENGTH: `вы ввели максимально допустимое количество символов - ${MAX_DESCRIPTION_LENGTH},`
 };
 
@@ -24,12 +27,15 @@ const pristine = new Pristine (formElement, { // Создаём Пристин
   classTo: 'field-validate',
   errorClass: 'field-validate--invalid',
   successClass: 'field-validate--valid',
+  errorTextParent: 'field-validate',
+  errorTextTag: 'p',
   errorTextClass: 'form__error',
 });
 
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
 // <Открытие формы>
+
 const onImageUploadFormChange = () => {
   formOverlay.classList.remove('hidden');
   document.body.classList.add('modal-open');
@@ -50,6 +56,7 @@ const closeForm = () => {
   imageUploadForm.reset(); // Сбрасываем значение формы
   pristine.reset(); // Сбрасываем Пристин
 
+  uploadCancelButton.removeEventListener('click', onCloseButtonClick);
   document.removeEventListener('keydown', onDocumentKeydown);
 };
 
@@ -81,11 +88,13 @@ const showLengthWarning = (evt) => {
 const hashtagValidator = (inputValue) => { //Функция  проверки, правильно ли заполнено поле для хештегов
   errorAlert = ''; //Обнуляем все ошибки при первом клике
   const inputText = normalizeString(inputValue); //Приводим строку к нижнему регистру и обрезаем пробелы в начале и в конце
+
   if (!inputText) { // Проверка нормализации строки - если после трима не осталось ничего, форма валидна. Хештеги не обязательны
     return true;
   }
 
   const inputArray = inputText.split(/\s+/); //Регулярка для разделения хештегов между собой пробелами(в ней собраны все разделительные символы)
+
   if (!inputArray.length) { //Проверяем, существует ли массив с хештегами
     return true;
   }
