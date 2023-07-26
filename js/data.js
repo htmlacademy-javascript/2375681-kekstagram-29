@@ -1,7 +1,8 @@
 import {getRandomInteger} from './util.js';
 
+const MIN_PHOTO_COUNT = 1;
+const MAX_PHOTO_COUNT = 25;
 
-const PHOTO_COUNT = 25;
 
 const LIKES = {
   MIN: 15,
@@ -9,7 +10,8 @@ const LIKES = {
 };
 
 
-const description = ['Закат на берегу моря',
+const description = [
+  'Закат на берегу моря',
   'Романтический ужин на балконе с видом на горы',
   'Уютный вечер в семейном кругу',
   'Улочки старого города',
@@ -34,13 +36,14 @@ const commentList = [
   'Хочу туда',
   'А так можно было?',
   'Это законно?',
-  'Были там в пошлом году'
+  'Были там в пошлом году',
+  'Тема не раскрыта',
 ];
 
 
 function generateComments() {
   const comments = [];
-  for (let i = 0; i <= getRandomInteger(0, 30); i++) {
+  for (let i = 1; i <= getRandomInteger(0, 30); i++) {
     comments.push({
       id: i,
       avatar: `img/avatar-${getRandomInteger(1, 6)}.svg`,
@@ -55,7 +58,7 @@ function generateComments() {
 const photos = [];
 
 const addPhoto = (id) => ({
-  id: id,
+  id: getRandomInteger(MIN_PHOTO_COUNT, MAX_PHOTO_COUNT),
   url: `photos/${id}.jpg`,
   description: description[getRandomInteger(0, description.length - 1)],
   likes: getRandomInteger(LIKES.MIN, LIKES.MAX),
@@ -64,7 +67,7 @@ const addPhoto = (id) => ({
 
 
 const addPhotos = () => {
-  for (let i = 1; i <= PHOTO_COUNT; i ++) {
+  for (let i = 1; i <= MAX_PHOTO_COUNT; i++) {
     photos.push(addPhoto(i));
   }
 };

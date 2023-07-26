@@ -9,6 +9,8 @@ const bigPhotoCloseButton = bigPhoto.querySelector('.big-picture__cancel');
 const socialComments = bigPhoto.querySelector('.social__comments');
 const loadComments = bigPhoto.querySelector('.comments-loader');
 const socialFooterText = bigPhoto.querySelector('.social__footer-text');
+const commentItem = socialComments.querySelector('.social__comment');
+
 
 let commentsCount = COMMENTS_STEP;
 let currentComments = [];
@@ -28,25 +30,14 @@ const renderComments = () => {
 
   socialComments.textContent = `${commentsCount} из ${currentComments.length} комментариев`;
 
+
   const commentsFragment = document.createDocumentFragment();
 
-  // const comment = document.querySelector('.social__comment');
-
   commentsSelected.forEach((comment) => {
-    const newComment = document.createElement('li');
-    const imgComment = document.createElement('img');
-    const textComment = document.createElement('p');
-
-    newComment.classList.add('.social__comment');
-    imgComment.classList.add('.social__picture');
-    textComment.classList.add('.sotial__text');
-
-    imgComment.src = comment.avatar;
-    imgComment.alt = comment.name;
-    textComment.textContent = comment.message;
-
-    newComment.appendChild(imgComment);
-    newComment.appendChild(textComment);
+    const newComment = commentItem.cloneNode(true);
+    newComment.querySelector('.social__picture').src = comment.avatar;
+    newComment.querySelector('.social__picture').alt = comment.name;
+    newComment.querySelector('.social__text').textContent = comment.message;
 
     commentsFragment.appendChild(newComment);
   });
@@ -86,7 +77,7 @@ const showBigPhoto = (photo) => {
 
 
   function onBigPhotoEscKeyDown (evt) {
-    if(evt.keyCode === 27){
+    if(evt.key === 'Escape'){
       closeBigPhoto();
     }
   }
