@@ -64,7 +64,7 @@ const showBigPhoto = (photo) => {
 
   const closeBigPhoto = () => {
     bigPhoto.classList.add('hidden');
-    document.body.classList.remove('.modal-open');
+    document.body.classList.remove('modal-open');
     commentsCount = COMMENTS_STEP;
     currentComments = [];
     socialFooterText.value = '';

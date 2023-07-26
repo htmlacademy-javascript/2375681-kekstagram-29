@@ -1,33 +1,33 @@
-const scaleContainer = document.querySelector('.scale'); // Контейнер с элементами
-const scaleField = document.querySelector('.scale__control--value'); // Поле с значением в %
-const scaledPhoto = document.querySelector('.img-upload__preview img'); // Фото, которое нужно масштабировать
+const scaleContainer = document.querySelector('.scale');
+const scaleField = document.querySelector('.scale__control--value');
+const scaledPhoto = document.querySelector('.img-upload__preview img');
 
-const Scale = { //Mинимальное и максимальное значение(значение по умолчанию и шаг совпадают, можно не указывать)
+const Scale = {
   MIN: 25,
   MAX: 100,
 };
 
-scaleField.value = `${Scale.MAX}%`; //
+scaleField.value = `${Scale.MAX}%`;
 
-const setScale = (scaleValue) => { // Функция изменения масштаба фотки
-  scaledPhoto.style.transform = `scale(${scaleValue / scaleContainer.MAX})`;
-  scaleField.value = `${scaleValue}%`; // Для нового значения подставляем % к числу
+const setScale = (value) => {
+  scaledPhoto.style.transform = `scale(${value / 100})`;
+  scaleField.value = `${value}%`;
 };
 
 const calculateScale = (scaleMultiply) => {
-  const currentScale = parseInt(scaleField.value, 10); // Текущее значение в % приводим к числу(parseInt откинет символ %)
-  const newScale = currentScale + Scale.MIN * scaleMultiply; // Текущее значение + 25(шаг) * 1(увеличиваем фотку)
-  if (newScale < Scale.MIN || newScale > Scale.MAX){ // Проверяем, не вышло ли значение за диапазон от 25 до 100
+  const currentScale = parseInt(scaleField.value, 10);
+  const newScale = currentScale + Scale.MIN * scaleMultiply;
+  if (newScale < Scale.MIN || newScale > Scale.MAX){
     return;
   }
-  setScale(newScale); // Изменяем размер картинки
+  setScale(newScale);
 };
 
-const onScaleContainerClick = (evt) => { // Функция-проверка обработчика на контейнер =>
-  if (evt.target.classList.contains('.scale__control--bigger')){ // Если цель клика содержит класс scale__control--bigger =>
-    calculateScale(1); // увеличиваем фото
-  } else if (evt.target.classList.contains('.scale__control--smaller')){ // Если цель клика содержит класс scale__control--smaller =>
-    calculateScale(-1); // уменьшаем фото
+const onScaleContainerClick = (evt) => {
+  if (evt.target.classList.contains('scale__control--bigger')){
+    calculateScale(1);
+  } else if (evt.target.classList.contains('scale__control--smaller')){
+    calculateScale(-1);
   }
 };
 
@@ -35,6 +35,6 @@ const resetScale = () => {
   setScale(Scale.MAX);
 };
 
-scaleContainer.addEventListener('click', onScaleContainerClick); // Навешиваем на контейнер с элементами обработчик(это т.н. делегирование)
+scaleContainer.addEventListener('click', onScaleContainerClick);
 
 export {resetScale};
