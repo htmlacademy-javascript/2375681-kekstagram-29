@@ -4,7 +4,9 @@ const MAX_DESCRIPTION_LENGTH = 140;
 const MAX_HASHTAG_QTY = 5;
 const MAX_HASHTAG_LENGTH = 20;
 
-const ErrorMessage = { // Константы для описания ошибки написания хештега
+
+const ErrorMessage = {
+
   INVALID_VALUE: 'хеш-тег содержит недопустимые символы',
   INVALID_QUANTITY: `нельзя указать больше ${MAX_HASHTAG_QTY} хеш-тегов`,
   INVALID_REPEAT: 'хеш-теги не должны повторяться',
@@ -14,18 +16,18 @@ const ErrorMessage = { // Константы для описания ошибк�
   LIMIT_DESCRIPTION_LENGTH: `вы ввели максимально допустимое количество символов - ${MAX_DESCRIPTION_LENGTH},`
 };
 
-const formElement = document.querySelector('.img-upload__form'); //Форма загрузки нового изображения
-const hashtagInputElement = formElement.querySelector('.text__hashtags'); // Поле с хештегами
+
+const formElement = document.querySelector('.img-upload__form');
+const hashtagInputElement = formElement.querySelector('.text__hashtags');
 const descriptionInputElement = formElement.querySelector('.text__description');
 const submitBtnElement = formElement.querySelector('.img-upload__submit');
+const imageUploadForm = formElement.querySelector('.img-upload__input');
+const formOverlay = formElement.querySelector('.img-upload__overlay');
+const uploadCancelButton = formElement.querySelector('.img-upload__cancel');
 
 
-const imageUploadForm = formElement.querySelector('.img-upload__input'); // Поле для загрузки фотографий
-const formOverlay = formElement.querySelector('.img-upload__overlay'); // Форма редактирования изображения
-const uploadCancelButton = formElement.querySelector('.img-upload__cancel'); // Кнопка закрытия формы
+const pristine = new Pristine (formElement, {
 
-
-const pristine = new Pristine (formElement, { // Создаём Пристин
   classTo: 'field-validate',
   errorClass: 'field-validate--invalid',
   successClass: 'field-validate--valid',
@@ -34,21 +36,21 @@ const pristine = new Pristine (formElement, { // Создаём Пристин
   errorTextClass: 'form__error',
 });
 
+const isEscapeKey = (evt) => evt.key === 'Escape';
 
 // <Открытие формы>
-
-const isEscapeKey = (evt) => evt.key === 'Escape';
 
 const onImageUploadFormChange = () => {
   formOverlay.classList.remove('hidden');
   document.body.classList.add('modal-open');
 
-  uploadCancelButton.addEventListener('click', onCloseButtonClick); // Обработчик для закрытия формы крестиком
-  document.addEventListener('keydown', onDocumentKeydown); // Обработчик для закрытия формы ESC
+
+  uploadCancelButton.addEventListener('click', onCloseButtonClick);
+  document.addEventListener('keydown', onDocumentKeydown);
 };
 
-
 imageUploadForm.addEventListener('change',onImageUploadFormChange);
+
 
 // <Закрытие формы>
 
@@ -56,21 +58,19 @@ const closeForm = () => {
   formOverlay.classList.add('hidden');
   document.body.classList.remove('modal-open');
 
-  imageUploadForm.reset(); // Сбрасываем значение формы
-  pristine.reset(); // Сбрасываем Пристин
+  formElement.reset();
+  pristine.reset();
 
   uploadCancelButton.removeEventListener('click', onCloseButtonClick);
   document.removeEventListener('keydown', onDocumentKeydown);
-
 };
 
-
-function onCloseButtonClick () { // Функция для закрытия формы крестиком
-  closeForm();
+function onCloseButtonClick () {
+  closeForm ();
 }
 
 
-function onDocumentKeydown (evt) {// Функция для закрытия формы ESC
+function onDocumentKeydown (evt) {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
     closeForm();
@@ -80,8 +80,9 @@ function onDocumentKeydown (evt) {// Функция для закрытия фо
 
 /* <_______________________________________________________>Валидация</_______________________________________________________> */
 
-let errorAlert = ''; //Передаём переменную с пустым текстом(изначально текст пустой)
-const error = () => errorAlert; //Функция для того, чтобы Пристин перерисовал текст(Пристин не работает динамически, без функции текст останется пустым)
+let errorAlert = '';
+const error = () => errorAlert;
+
 
 const showLengthWarning = (evt) => {
   const normalizedText = normalizeString(descriptionInputElement.value);
@@ -92,24 +93,25 @@ const showLengthWarning = (evt) => {
   }
 };
 
-const hashtagValidator = (inputValue) => { //Функция  проверки, правильно ли заполнено поле для хештегов
-  errorAlert = ''; //Обнуляем все ошибки при первом клике
 
-  const inputText = normalizeString(inputValue); //Приводим строку к нижнему регистру и обрезаем пробелы в начале и в конце
+const hashtagValidator = (inputValue) => {
+  errorAlert = '';
+  const inputText = normalizeString(inputValue);
 
-  if (!inputText) { // Проверка нормализации строки - если после трима не осталось ничего, форма валидна. Хештеги не обязательны
+  if (!inputText) {
     return true;
   }
 
-  const inputArray = inputText.split(/\s+/); //Регулярка для разделения хештегов между собой пробелами(в ней собраны все разделительные символы)
+  const inputArray = inputText.split(/\s+/);
 
-  if (!inputArray.length) { //Проверяем, существует ли массив с хештегами
+  if (!inputArray.length) {
     return true;
   }
 
-  const rules = [ // В данном объекте важен порядок следования правил
+  const rules = [
     {
-      check: inputArray.some((hashtag) => hashtag.indexOf('#', 1) >= 1), // Правила написания хештегов. Метод some вернёт true, если хотя бы один элемент соответствует условию
+      check: inputArray.some((hashtag) => hashtag.indexOf('#', 1) >= 1),
+
       error: ErrorMessage.INVALID_SEPARATOR,
     },
     {
@@ -134,19 +136,22 @@ const hashtagValidator = (inputValue) => { //Функция  проверки, �
     },
   ];
 
-  return rules.every((rule) =>{ // Методом every(возвращает true или false, должны соответствовать все элементы для true) перебераем объект правил
-    const isInvalide = rule.check; //Проверяет, ошибочно ли правило для хештега
+
+  return rules.every((rule) => {
+    const isInvalide = rule.check;
     if(isInvalide){
-      errorAlert = rule.error; // Если ошибочно, высветится соответствующее сообщение об ошибке
+      errorAlert = rule.error;
     }
-    return !isInvalide; // Если нет, то всё ништяк
+    return !isInvalide;
   });
 };
 
-pristine.addValidator(hashtagInputElement, hashtagValidator, error, 2, false);//Чтобы Пристин заработал, навешиваем на поле для хештегов один из методов валидации
 
-const onHashtagInput = () => { // Функция обработчика события на поле для хештегов => деактивирует кнопку 'Опубликовать' при  неправильно введённом хештеге
-  if (pristine.validate()) { // Запускает внешнюю библиотеку валидации
+pristine.addValidator(hashtagInputElement, hashtagValidator, error, 2, false);
+
+const onHashtagInput = () => {
+  if (pristine.validate()) {
+
     submitBtnElement.disabled = false;
   } else {
     submitBtnElement.disabled = true;
@@ -154,6 +159,8 @@ const onHashtagInput = () => { // Функция обработчика собы
 };
 
 descriptionInputElement.addEventListener('input', showLengthWarning);
-hashtagInputElement.addEventListener('input', onHashtagInput); // Навешиваем событие ввода любым способом(с клавиатуры, кнопкой мыши) на поле для хештегов
+
+hashtagInputElement.addEventListener('input', onHashtagInput);
+
 
 export {onImageUploadFormChange, closeForm};
