@@ -11,6 +11,7 @@ const loadComments = bigPhoto.querySelector('.comments-loader');
 const socialFooterText = bigPhoto.querySelector('.social__footer-text');
 const commentItem = socialComments.querySelector('.social__comment');
 
+
 let commentsCount = COMMENTS_STEP;
 let currentComments = [];
 
@@ -28,6 +29,7 @@ const renderComments = () => {
   }
 
   socialComments.textContent = `${commentsCount} из ${currentComments.length} комментариев`;
+
 
   const commentsFragment = document.createDocumentFragment();
 

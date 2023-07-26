@@ -4,7 +4,9 @@ const MAX_DESCRIPTION_LENGTH = 140;
 const MAX_HASHTAG_QTY = 5;
 const MAX_HASHTAG_LENGTH = 20;
 
+
 const ErrorMessage = {
+
   INVALID_VALUE: 'хеш-тег содержит недопустимые символы',
   INVALID_QUANTITY: `нельзя указать больше ${MAX_HASHTAG_QTY} хеш-тегов`,
   INVALID_REPEAT: 'хеш-теги не должны повторяться',
@@ -13,6 +15,7 @@ const ErrorMessage = {
   INVALID_FIRST_SIMBOL: 'хеш-тег начинается с символа #',
   LIMIT_DESCRIPTION_LENGTH: `вы ввели максимально допустимое количество символов - ${MAX_DESCRIPTION_LENGTH},`
 };
+
 
 const formElement = document.querySelector('.img-upload__form');
 const hashtagInputElement = formElement.querySelector('.text__hashtags');
@@ -24,6 +27,7 @@ const uploadCancelButton = formElement.querySelector('.img-upload__cancel');
 
 
 const pristine = new Pristine (formElement, {
+
   classTo: 'field-validate',
   errorClass: 'field-validate--invalid',
   successClass: 'field-validate--valid',
@@ -39,6 +43,7 @@ const isEscapeKey = (evt) => evt.key === 'Escape';
 const onImageUploadFormChange = () => {
   formOverlay.classList.remove('hidden');
   document.body.classList.add('modal-open');
+
 
   uploadCancelButton.addEventListener('click', onCloseButtonClick);
   document.addEventListener('keydown', onDocumentKeydown);
@@ -64,6 +69,7 @@ function onCloseButtonClick () {
   closeForm ();
 }
 
+
 function onDocumentKeydown (evt) {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
@@ -71,10 +77,12 @@ function onDocumentKeydown (evt) {
   }
 }
 
+
 /* <_______________________________________________________>Валидация</_______________________________________________________> */
 
 let errorAlert = '';
 const error = () => errorAlert;
+
 
 const showLengthWarning = (evt) => {
   const normalizedText = normalizeString(descriptionInputElement.value);
@@ -84,6 +92,7 @@ const showLengthWarning = (evt) => {
     parent.appendChild(warningElement);
   }
 };
+
 
 const hashtagValidator = (inputValue) => {
   errorAlert = '';
@@ -102,6 +111,7 @@ const hashtagValidator = (inputValue) => {
   const rules = [
     {
       check: inputArray.some((hashtag) => hashtag.indexOf('#', 1) >= 1),
+
       error: ErrorMessage.INVALID_SEPARATOR,
     },
     {
@@ -126,6 +136,7 @@ const hashtagValidator = (inputValue) => {
     },
   ];
 
+
   return rules.every((rule) => {
     const isInvalide = rule.check;
     if(isInvalide){
@@ -140,6 +151,7 @@ pristine.addValidator(hashtagInputElement, hashtagValidator, error, 2, false);
 
 const onHashtagInput = () => {
   if (pristine.validate()) {
+
     submitBtnElement.disabled = false;
   } else {
     submitBtnElement.disabled = true;
@@ -149,5 +161,6 @@ const onHashtagInput = () => {
 descriptionInputElement.addEventListener('input', showLengthWarning);
 
 hashtagInputElement.addEventListener('input', onHashtagInput);
+
 
 export {onImageUploadFormChange, closeForm};

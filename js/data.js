@@ -1,8 +1,8 @@
 import {getRandomInteger} from './util.js';
 
-
 const MIN_PHOTO_COUNT = 1;
 const MAX_PHOTO_COUNT = 25;
+
 
 const LIKES = {
   MIN: 15,
@@ -15,7 +15,7 @@ const description = [
   'Романтический ужин на балконе с видом на горы',
   'Уютный вечер в семейном кругу',
   'Улочки старого города',
-  'Красота в глазах смотрящего',
+  'Красота в глазах смотрящего'
 ];
 
 const nameList = ['Александр', 'Дарина', 'Илья', 'Марина', 'Андрей', 'Светлана', 'Константин', 'Вера'];
@@ -43,7 +43,7 @@ const commentList = [
 
 function generateComments() {
   const comments = [];
-  for (let i = 0; i <= getRandomInteger(0, 30); i++) {
+  for (let i = 1; i <= getRandomInteger(0, 30); i++) {
     comments.push({
       id: i,
       avatar: `img/avatar-${getRandomInteger(1, 6)}.svg`,
