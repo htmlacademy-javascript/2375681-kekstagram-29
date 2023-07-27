@@ -28,7 +28,10 @@ const renderComments = () => {
     loadComments.classList.remove('hidden');
   }
 
-  socialComments.textContent = `${commentsCount} из ${currentComments.length} комментариев`;
+
+  const commentsCountSpan = document.createElement('span');
+  commentsCountSpan.textContent = `${commentsCount} из ${currentComments.length} комментариев`;
+  socialComments.appendChild(commentsCountSpan);
 
 
   const commentsFragment = document.createDocumentFragment();
