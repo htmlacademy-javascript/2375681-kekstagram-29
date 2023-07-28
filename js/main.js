@@ -1,9 +1,9 @@
-// import {photos} from './data.js';
 import {renderPhotos} from './pictures.js';
 import './form-validate.js';
 import './scale.js';
 import './effects.js';
 import {loadData} from './fetch.js';
+import './sort-of-photos.js';
 
 
 let photos = [];
@@ -31,3 +31,5 @@ loadData(onSuccess, errorAlert);
 
 
 renderPhotos(photos);
+
+export {photos};
