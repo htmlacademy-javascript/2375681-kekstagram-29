@@ -6,12 +6,13 @@ const templateFragment = document.querySelector('#picture').content.querySelecto
 
 
 const renderPhoto = (photo) => {
-  const {url, comments, likes, description} = photo;
+  const {url, comments, likes, description, id} = photo;
   const element = templateFragment.cloneNode(true);
   element.querySelector('.picture__img').src = url;
   element.querySelector('.picture__img').alt = description;
   element.querySelector('.picture__comments').textContent = comments.length;
   element.querySelector('.picture__likes').textContent = likes;
+  element.dataset.elementId = id;
 
   const onElementClick = (evt) => {
     evt.preventDefault();
@@ -34,5 +35,12 @@ const renderPhotos = (photos) => {
   picturesContainer.appendChild(fragment);
 };
 
+const removePhotos = () => {
+  const photos = picturesContainer.querySelectorAll('.picture');
+  if(photos){
+    photos.forEach((photo) => photo.remove());
+  }
+};
 
-export {renderPhotos};
+
+export {renderPhotos, removePhotos};
