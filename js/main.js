@@ -4,7 +4,7 @@ import './scale.js';
 import './effects.js';
 import {loadData} from './fetch.js';
 import './sort-of-photos.js';
-
+import './user-photos.js';
 
 let photos = [];
 

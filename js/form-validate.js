@@ -28,12 +28,12 @@ const uploadCancelButton = formElement.querySelector('.img-upload__cancel');
 
 const pristine = new Pristine (formElement, {
 
-  classTo: 'field-validate',
+  classTo: 'img-upload__field-wrapper',
   errorClass: 'field-validate--invalid',
   successClass: 'field-validate--valid',
-  errorTextParent: 'field-validate',
+  errorTextParent: 'img-upload__field-wrapper',
   errorTextTag: 'p',
-  errorTextClass: 'form__error',
+  errorTextClass: 'form-error',
 });
 
 const isEscapeKey = (evt) => evt.key === 'Escape';
