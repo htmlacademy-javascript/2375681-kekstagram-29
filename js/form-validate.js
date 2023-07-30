@@ -1,5 +1,10 @@
 import {normalizeString} from './util.js';
 
+const Keys = {
+  ESCAPE: 'Escape',
+  ESC: 'Esc',
+};
+
 const MAX_DESCRIPTION_LENGTH = 140;
 const MAX_HASHTAG_QTY = 5;
 const MAX_HASHTAG_LENGTH = 20;
@@ -36,7 +41,7 @@ const pristine = new Pristine (formElement, {
   errorTextClass: 'form-error',
 });
 
-const isEscapeKey = (evt) => evt.key === 'Escape';
+const isEscapeKey = (evt) => evt.key === Keys.ESCAPE || evt.key === Keys.ESC;
 
 // <Открытие формы>
 
