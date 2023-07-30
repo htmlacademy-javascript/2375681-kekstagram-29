@@ -19,11 +19,11 @@ const shuffleArray = (array) => {
   return array;
 };
 
-const debounce = (callback, timeoutDelay = DELAY) => {
-  let timeoutId;
+const debounce = (callback, timeOfDelay = DELAY) => {
+  let timeout;
   return (...rest) => {
-    clearTimeout(timeoutId);
-    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+    clearTimeout(timeout);
+    timeout = setTimeout(() => callback.apply(this, rest), timeOfDelay);
   };
 };
 
