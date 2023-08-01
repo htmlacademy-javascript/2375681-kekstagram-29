@@ -18,15 +18,13 @@ const shuffleArray = (array) => {
   return array;
 };
 
-function debounce(callback) {
+const debounce = (callback, timeOfDelay = DELAY) => {
   let timeout;
-  return function() {
+  return (...rest) => {
     clearTimeout(timeout);
-    timeout = setTimeout(() => {
-      callback();
-    }, DELAY);
+    timeout = setTimeout(() => callback.apply(this, rest), timeOfDelay);
   };
-}
+};
 
 
 const selectedFilters = {
