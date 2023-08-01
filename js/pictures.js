@@ -6,7 +6,7 @@ const templateFragment = document.querySelector('#picture').content.querySelecto
 
 
 const renderPhoto = (photo) => {
-  const {url, comments, likes, description, id} = photo;
+  const {url, comments, likes, description} = photo;
   const element = templateFragment.cloneNode(true);
   element.querySelector('.picture__img').src = url;
   element.querySelector('.picture__img').alt = description;
@@ -24,7 +24,6 @@ const renderPhoto = (photo) => {
   return element;
 };
 
-// const fragment = document.createDocumentFragment();
 
 const renderPhotos = (photos) => {
   const fragment = document.createDocumentFragment();
