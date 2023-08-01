@@ -1,23 +1,28 @@
-import {closeForm,isEscapeKey} from './form-validate.js';
-import {uploadData} from './fetch.js';
+import { closeForm } from './form-validate.js';
+import { uploadData } from './fetch.js';
+import { isEscapeKey } from './util.js';
 
-const errorMessage = document.querySelector('#error').textContent.querySelector('.error');
+const errorMessage = document.querySelector('#error').content.querySelector('.error');
 const successMessage = document.querySelector('#success').content.querySelector('.success');
 const formUpload = document.querySelector('.img-upload__form');
 
 const closePopup = () => {
   const popup = document.querySelector('.error') || document.querySelector('.success');
-  popup.remove();
+  if (popup) {
+    popup.remove();
+  }
 };
 
 const onEscKeydown = (evt) => {
   if (isEscapeKey(evt)) {
     closePopup();
+    document.removeEventListener('keydown', onEscKeydown);
   }
 };
 
 const onPopupClick = (evt) => {
-  if (!evt.target.closest('.success__inner') && !evt.target.closest('.error__inner')) {
+  const popup = document.querySelector('.error') || document.querySelector('.success');
+  if (popup && !evt.target.closest('.success__inner') && !evt.target.closest('.error__inner')) {
     evt.preventDefault();
     closePopup();
     document.removeEventListener('keydown', onEscKeydown);
@@ -71,7 +76,6 @@ const onSuccess = ()=> {
 
 const errorAlert = () => {
   showErrorMessage();
-  closeForm();
 };
 
 const onFormUploadSubmit = (evt) => {

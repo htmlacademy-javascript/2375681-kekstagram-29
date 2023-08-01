@@ -8,7 +8,6 @@ const COUNT_OF_FILTER = 10;
 const BTN_ACTIVE_CLASS = 'img-filters__button--active';
 
 const filtersContainer = document.querySelector('.img-filters');
-filtersContainer.classList.remove('img-filters--inactive');
 const filtersForm = filtersContainer.querySelector('.img-filters__form');
 
 const shuffleArray = (array) => {

@@ -1,9 +1,6 @@
-import {normalizeString} from './util.js';
-
-const Keys = {
-  ESCAPE: 'Escape',
-  ESC: 'Esc',
-};
+import { resetSlider } from './effects.js';
+import {normalizeString, isEscapeKey} from './util.js';
+import { resetScale } from './scale.js';
 
 const MAX_DESCRIPTION_LENGTH = 140;
 const MAX_HASHTAG_QTY = 5;
@@ -17,7 +14,7 @@ const ErrorMessage = {
   INVALID_REPEAT: 'хеш-теги не должны повторяться',
   INVALID_HASHTAG_LENGTH: `максимальная длина одного хеш-тега ${MAX_HASHTAG_LENGTH} символов, включая решётку`,
   INVALID_SEPARATOR: 'хеш-теги разделяются пробелами',
-  INVALID_FIRST_SIMBOL: 'хеш-тег начинается с символа #',
+  INVALID_FIRST_SIMBOL: 'хеш-тег должен начинаться с символа #',
   LIMIT_DESCRIPTION_LENGTH: `вы ввели максимально допустимое количество символов - ${MAX_DESCRIPTION_LENGTH},`
 };
 
@@ -29,7 +26,7 @@ const submitBtnElement = formElement.querySelector('.img-upload__submit');
 const imageUploadForm = formElement.querySelector('.img-upload__input');
 const formOverlay = formElement.querySelector('.img-upload__overlay');
 const uploadCancelButton = formElement.querySelector('.img-upload__cancel');
-
+const commentsField = formElement.querySelector('.img-upload__text');
 
 const pristine = new Pristine (formElement, {
 
@@ -41,9 +38,6 @@ const pristine = new Pristine (formElement, {
   errorTextClass: 'form-error',
 });
 
-const isEscapeKey = (evt) => evt.key === Keys.ESCAPE || evt.key === Keys.ESC;
-
-// <Открытие формы>
 
 const onImageUploadFormChange = () => {
   formOverlay.classList.remove('hidden');
@@ -57,17 +51,22 @@ const onImageUploadFormChange = () => {
 imageUploadForm.addEventListener('change',onImageUploadFormChange);
 
 
-// <Закрытие формы>
-
 const closeForm = () => {
   formOverlay.classList.add('hidden');
   document.body.classList.remove('modal-open');
-
+  resetSlider();
   formElement.reset();
   pristine.reset();
-
+  resetScale();
+  submitBtnElement.disabled = false;
   uploadCancelButton.removeEventListener('click', onCloseButtonClick);
   document.removeEventListener('keydown', onDocumentKeydown);
+};
+
+const commentsFieldKeydown = (evt) => {
+  if(isEscapeKey(evt)) {
+    evt.stopPropagation();
+  }
 };
 
 function onCloseButtonClick () {
@@ -81,9 +80,6 @@ function onDocumentKeydown (evt) {
     closeForm();
   }
 }
-
-
-/* <_______________________________________________________>Валидация</_______________________________________________________> */
 
 let errorAlert = '';
 const error = () => errorAlert;
@@ -164,7 +160,7 @@ const onHashtagInput = () => {
 };
 
 descriptionInputElement.addEventListener('input', showLengthWarning);
-
+commentsField.addEventListener('keydown', commentsFieldKeydown);
 hashtagInputElement.addEventListener('input', onHashtagInput);
 
 
