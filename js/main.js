@@ -5,7 +5,9 @@ import './effects.js';
 import {loadData} from './fetch.js';
 import './sort-of-photos.js';
 import './user-photos.js';
+
 import './messages.js';
+
 
 let photos = [];
 

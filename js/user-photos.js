@@ -15,6 +15,9 @@ uploadFile.addEventListener('change', () => {
 
     const reader = new FileReader();
 
+
+
+
     reader.addEventListener('load', () => {
       preview.src = reader.result;
       smallImages.forEach((evt) => {
