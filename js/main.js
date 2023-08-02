@@ -4,13 +4,15 @@ import './scale.js';
 import './effects.js';
 import {loadData} from './fetch.js';
 import './sort-of-photos.js';
-
+import './user-photos.js';
+import './messages.js';
 
 let photos = [];
 
 const onSuccess = (data) => {
   photos = data.slice();
   renderPhotos(photos);
+  document.querySelector('.img-filters').classList.remove('img-filters--inactive');
 };
 
 const errorAlert = () => {
@@ -29,7 +31,5 @@ const errorAlert = () => {
 
 loadData(onSuccess, errorAlert);
 
-
-renderPhotos(photos);
 
 export {photos};
