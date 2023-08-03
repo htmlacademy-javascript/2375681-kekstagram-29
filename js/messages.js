@@ -4,7 +4,7 @@ import { isEscapeKey } from './util.js';
 
 const errorMessage = document.querySelector('#error').content.querySelector('.error');
 const successMessage = document.querySelector('#success').content.querySelector('.success');
-const formUpload = document.querySelector('.img-upload__form');
+const formUploadMessage = document.querySelector('.img-upload__form');
 
 const closePopup = () => {
   const popup = document.querySelector('.error') || document.querySelector('.success');
@@ -78,7 +78,7 @@ const errorAlert = () => {
   showErrorMessage();
 };
 
-const onFormUploadSubmit = (evt) => {
+const onFormUploadMessageSubmit = (evt) => {
   evt.preventDefault();
 
   const submitButton = document.querySelector('.img-upload__submit');
@@ -93,4 +93,4 @@ const onFormUploadSubmit = (evt) => {
   },'POST', new FormData(evt.target));
 };
 
-formUpload.addEventListener('submit', onFormUploadSubmit);
+formUploadMessage.addEventListener('submit', onFormUploadMessageSubmit);

@@ -2,12 +2,12 @@ import {showBigPhoto} from './big-picture.js';
 
 
 const picturesContainer = document.querySelector('.pictures');
-const templateFragment = document.querySelector('#picture').content.querySelector('.picture');
+const templateFragmentContainer = document.querySelector('#picture').content.querySelector('.picture');
 
 
 const renderPhoto = (photo) => {
   const {url, comments, likes, description} = photo;
-  const element = templateFragment.cloneNode(true);
+  const element = templateFragmentContainer.cloneNode(true);
   element.querySelector('.picture__img').src = url;
   element.querySelector('.picture__img').alt = description;
   element.querySelector('.picture__comments').textContent = comments.length;
@@ -37,10 +37,7 @@ const renderPhotos = (photos) => {
 
 const removePhotos = () => {
   const photos = picturesContainer.querySelectorAll('.picture');
-  if(photos){
-    photos.forEach((photo) => photo.remove());
-  }
+  photos.forEach((photo) => photo.remove());
 };
-
 
 export {renderPhotos, removePhotos};

@@ -1,21 +1,21 @@
 const scaleContainer = document.querySelector('.scale');
-const scaleField = document.querySelector('.scale__control--value');
-const scaledPhoto = document.querySelector('.img-upload__preview img');
+const scaleFieldContainer = document.querySelector('.scale__control--value');
+const scaledPhotoContainer = document.querySelector('.img-upload__preview img');
 
 const Scale = {
   MIN: 25,
   MAX: 100,
 };
 
-scaleField.value = `${Scale.MAX}%`;
+scaleFieldContainer.value = `${Scale.MAX}%`;
 
 const setScale = (value) => {
-  scaledPhoto.style.transform = `scale(${value / 100})`;
-  scaleField.value = `${value}%`;
+  scaledPhotoContainer.style.transform = `scale(${value / 100})`;
+  scaleFieldContainer.value = `${value}%`;
 };
 
 const calculateScale = (scaleMultiply) => {
-  const currentScale = parseInt(scaleField.value, 10);
+  const currentScale = parseInt(scaleFieldContainer.value, 10);
   const newScale = currentScale + Scale.MIN * scaleMultiply;
   if (newScale < Scale.MIN || newScale > Scale.MAX){
     return;

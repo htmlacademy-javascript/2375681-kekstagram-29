@@ -16,7 +16,7 @@ const onSuccess = (data) => {
   document.querySelector('.img-filters').classList.remove('img-filters--inactive');
 };
 
-const errorAlert = () => {
+const showErrorAlert = () => {
   const messageAlert = document.createElement('div');
   messageAlert.style.position = 'absolute';
   messageAlert.style.zIndex = '100';
@@ -30,7 +30,7 @@ const errorAlert = () => {
   document.body.append(messageAlert);
 };
 
-loadData(onSuccess, errorAlert);
+loadData(onSuccess, showErrorAlert);
 
 
 export {photos};

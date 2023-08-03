@@ -8,7 +8,7 @@ const COUNT_OF_FILTER = 10;
 const BTN_ACTIVE_CLASS = 'img-filters__button--active';
 
 const filtersContainer = document.querySelector('.img-filters');
-const filtersForm = filtersContainer.querySelector('.img-filters__form');
+const filtersFormContainer = filtersContainer.querySelector('.img-filters__form');
 
 const shuffleArray = (array) => {
   for (let indexOne = array.length - 1; indexOne > 0; indexOne--) {
@@ -35,7 +35,7 @@ const selectedFilters = {
 
 const isButton = (evt) => evt.target.tagName === 'BUTTON';
 
-const onFiltersFormClick = debounce((evt) => {
+const onFiltersFormContainerClick = debounce((evt) => {
   if (isButton(evt)){
     removePhotos();
   }
@@ -44,7 +44,7 @@ const onFiltersFormClick = debounce((evt) => {
 
 const onButtonClick = (evt) => {
   if (isButton(evt)){
-    const selectedButton = filtersForm.querySelector(`.${BTN_ACTIVE_CLASS}`);
+    const selectedButton = filtersFormContainer.querySelector(`.${BTN_ACTIVE_CLASS}`);
 
     if (selectedButton){
       selectedButton.classList.remove(BTN_ACTIVE_CLASS);
@@ -56,6 +56,6 @@ const onButtonClick = (evt) => {
   }
 };
 
-filtersForm.addEventListener('click', onFiltersFormClick);
+filtersFormContainer.addEventListener('click', onFiltersFormContainerClick);
 
-filtersForm.addEventListener('click', onButtonClick);
+filtersFormContainer.addEventListener('click', onButtonClick);
