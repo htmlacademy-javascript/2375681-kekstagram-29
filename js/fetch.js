@@ -3,7 +3,7 @@ const Urls = {
   POST: 'https://29.javascript.pages.academy/kekstagram'
 };
 
-const sendRequest = (onSuccess, errorAlert, method, body) => {
+const sendRequest = (onSuccess, showErrorAlert, method, body) => {
   fetch(
     Urls[method],
     {
@@ -16,12 +16,12 @@ const sendRequest = (onSuccess, errorAlert, method, body) => {
       onSuccess(data);
     })
     .catch((err) => {
-      errorAlert(err);
+      showErrorAlert(err);
     });
 };
-const loadData = (onSuccess, errorAlert, method = 'GET') => sendRequest(onSuccess, errorAlert, method);
+const loadData = (onSuccess, showErrorAlert, method = 'GET') => sendRequest(onSuccess, showErrorAlert, method);
 
-const uploadData = (onSuccess, errorAlert, method = 'POST', body) => sendRequest(onSuccess, errorAlert, method, body);
+const uploadData = (onSuccess, showErrorAlert, method = 'POST', body) => sendRequest(onSuccess, showErrorAlert, method, body);
 
 
 export {loadData, uploadData};

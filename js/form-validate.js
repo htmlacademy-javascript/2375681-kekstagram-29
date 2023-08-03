@@ -24,10 +24,10 @@ const formElement = document.querySelector('.img-upload__form');
 const hashtagInputElement = formElement.querySelector('.text__hashtags');
 const descriptionInputElement = formElement.querySelector('.text__description');
 const submitBtnElement = formElement.querySelector('.img-upload__submit');
-const imageUploadForm = formElement.querySelector('.img-upload__input');
-const formOverlay = formElement.querySelector('.img-upload__overlay');
-const uploadCancelButton = formElement.querySelector('.img-upload__cancel');
-const commentsField = formElement.querySelector('.img-upload__text');
+const imageUploadFormElement = formElement.querySelector('.img-upload__input');
+const formOverlayElement = formElement.querySelector('.img-upload__overlay');
+const uploadCancelButtonElement = formElement.querySelector('.img-upload__cancel');
+const commentsFieldElement = formElement.querySelector('.img-upload__text');
 
 const pristine = new Pristine (formElement, {
 
@@ -40,37 +40,37 @@ const pristine = new Pristine (formElement, {
 });
 
 
-const onImageUploadFormChange = () => {
-  formOverlay.classList.remove('hidden');
+const onImageUploadFormElementChange = () => {
+  formOverlayElement.classList.remove('hidden');
   document.body.classList.add('modal-open');
 
 
-  uploadCancelButton.addEventListener('click', onCloseButtonClick);
+  uploadCancelButtonElement.addEventListener('click', onCloseButtonElementClick);
   document.addEventListener('keydown', onDocumentKeydown);
 };
 
-imageUploadForm.addEventListener('change',onImageUploadFormChange);
+imageUploadFormElement.addEventListener('change',onImageUploadFormElementChange);
 
 
 const closeForm = () => {
-  formOverlay.classList.add('hidden');
+  formOverlayElement.classList.add('hidden');
   document.body.classList.remove('modal-open');
   resetSlider();
   formElement.reset();
   pristine.reset();
   resetScale();
   submitBtnElement.disabled = false;
-  uploadCancelButton.removeEventListener('click', onCloseButtonClick);
+  uploadCancelButtonElement.removeEventListener('click', onCloseButtonElementClick);
   document.removeEventListener('keydown', onDocumentKeydown);
 };
 
-const commentsFieldKeydown = (evt) => {
+const onCommentsFieldElementKeydown = (evt) => {
   if(isEscapeKey(evt)) {
     evt.stopPropagation();
   }
 };
 
-function onCloseButtonClick () {
+function onCloseButtonElementClick () {
   closeForm ();
 }
 
@@ -83,10 +83,10 @@ function onDocumentKeydown (evt) {
 }
 
 let errorAlert = '';
-const error = () => errorAlert;
+const showError = () => errorAlert;
 
 
-const showLengthWarning = (evt) => {
+const onDescriptionInputElement = (evt) => {
   const normalizedText = normalizeString(descriptionInputElement.value);
   if (normalizedText.length === MAX_DESCRIPTION_LENGTH) {
     const warningElement = document.createElement('p', 'warning__message', ErrorMessage.LIMIT_LENGTH);
@@ -149,9 +149,9 @@ const hashtagValidator = (inputValue) => {
 };
 
 
-pristine.addValidator(hashtagInputElement, hashtagValidator, error, 2, false);
+pristine.addValidator(hashtagInputElement, hashtagValidator, showError, 2, false);
 
-const onHashtagInput = () => {
+const onHashtagInputElement = () => {
   if (pristine.validate()) {
 
     submitBtnElement.disabled = false;
@@ -160,9 +160,9 @@ const onHashtagInput = () => {
   }
 };
 
-descriptionInputElement.addEventListener('input', showLengthWarning);
-commentsField.addEventListener('keydown', commentsFieldKeydown);
-hashtagInputElement.addEventListener('input', onHashtagInput);
+descriptionInputElement.addEventListener('input', onDescriptionInputElement);
+commentsFieldElement.addEventListener('keydown', onCommentsFieldElementKeydown);
+hashtagInputElement.addEventListener('input', onHashtagInputElement);
 
 
-export {onImageUploadFormChange, closeForm};
+export {onImageUploadFormElementChange, closeForm};
